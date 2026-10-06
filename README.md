@@ -196,8 +196,26 @@ Se `example.env` för samtliga variabler som behövs för produktion/Docker Comp
 | `ADMIN_EMAIL` / `ADMIN_PASSWORD` | Uppgifter för det seedade admin-kontot |
 | `FRONTEND_ORIGIN` | Tillåten CORS-origin för API:et |
 | `VITE_API_URL` | URL frontend bygger mot (bakas in i frontend-bygget) |
+| `OPENAI_API_KEY` | API-nyckel för chatbotens server-side-anrop till OpenAI |
+| `OPENAI_MODEL` | OpenAI-modellen som chatboten ska använda, t.ex. `gpt-5-mini` |
 
 Lokalt under utveckling styrs backend istället av `Innovia.Api/appsettings.json` / `appsettings.Development.json`.
+
+### Chatbot
+
+Den autentiserade endpointen `POST /chatbot/messages` tar emot ett meddelande och
+returnerar ett AI-svar. Chatboten använder FAQ-filen
+`Innovia.Api/Features/Chatbot/Knowledge/innovia-hub-faq.md` som kontext och ska därför
+inte hitta på bokningsregler som inte finns i FAQ:en. OpenAI-anropet görs från API:t,
+så `OPENAI_API_KEY` ska aldrig läggas i frontend-koden.
+
+Exempel:
+
+```json
+{
+  "message": "Hur bokar jag ett mötesrum?"
+}
+```
 
 ## Tester
 
