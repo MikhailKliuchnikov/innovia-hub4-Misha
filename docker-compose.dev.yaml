@@ -7,7 +7,7 @@ services:
       POSTGRES_PASSWORD: innovia_pass
       POSTGRES_DB: innovia_db
     ports:
-      - "5432:5432"
+      - "5434:5432"
     volumes:
       - innovia_pgdata_dev:/var/lib/postgresql/data
     healthcheck:
@@ -37,6 +37,8 @@ services:
       AdminUser__Email: "admin@admin.com"
       AdminUser__Password: "Password123!"
       Cors__FrontendOrigin: "http://localhost:5173"
+      OPENAI_API_KEY: ${OPENAI_API_KEY}
+      OPENAI_MODEL: ${OPENAI_MODEL:-gpt-5-mini}
     ports:
       - "5123:8080"
     volumes:

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { NavLink, Outlet, useLocation } from "react-router-dom";
 import { useAuth } from "../auth/AuthContext";
+import { ChatWidget } from "./chatbot/ChatWidget";
 
 const memberLinks = [
   { to: "/resources", label: "Resurser" },
@@ -136,6 +137,7 @@ export function Layout() {
       <main className="mx-auto max-w-6xl px-4 py-6 md:py-8">
         <Outlet />
       </main>
+      {user && <ChatWidget userId={user.id} />}
     </div>
   );
 }

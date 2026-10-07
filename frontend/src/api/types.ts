@@ -1,5 +1,18 @@
 export type ResourceStatus = "Online" | "Maintenance" | "Offline" | "Archived";
 
+export type ChatMessageRole = "user" | "assistant";
+
+export interface ChatMessage {
+  id: string;
+  role: ChatMessageRole;
+  content: string;
+  createdAt: string;
+}
+
+export interface ChatbotResponse {
+  message: string;
+}
+
 export interface Me {
   id: string;
   email: string;
